@@ -100,7 +100,15 @@ function pintarSerpiente()
   for (let index = 0; index < serpiente.length; index++) 
     {
       let arregloRecorrer=serpiente[index];
-      pintarParte(arregloRecorrer.x,arregloRecorrer.y);
+      if (arregloRecorrer!=serpiente[0]) 
+        {ctx.fillStyle="red";
+          pintarParte(arregloRecorrer.x,arregloRecorrer.y);
+      } 
+      else 
+      {
+        ctx.fillStyle="yellow"
+        pintarParte(arregloRecorrer.x,arregloRecorrer.y);
+      }
     
   }
 }
