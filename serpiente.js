@@ -3,13 +3,11 @@
     const canvas = document.getElementById("canvasJuego");
     const ctx = canvas.getContext("2d");
 
-
+    const TAMANIO_CELDA=25;
     
 
     // Primera pintura del juego al cargar la página
-    function iniciarJuego() {
       dibujarTodo();
-    }
     
 
     // =========================
@@ -27,7 +25,6 @@
       dibujarTablero();
     }
 
-    const TAMANIO_CELDA=25;
     function dibujarTablero() 
     {
       //Pintamos las lineas verticales de la cuadricula
