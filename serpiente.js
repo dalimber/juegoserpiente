@@ -34,12 +34,11 @@
         {
           ctx.strokeStyle //coloca un color de línea, similar a fillStyle
           ctx.beginPath()//se invoca siempre para iniciar un trazo
-          let x=index;
-          let y=0;
-          ctx.moveTo(x,y)//posición inicial de la figura
-          x=index;
-          y=canvas.height;
-          ctx.lineTo(x,y)/*dibuja una línea desde la ultima posicion del graficador, en este caso lo que puso en moveTo, hasta la posicion que
+          let xLineaVertical=index;
+          let yLineaVertical=0;
+          ctx.moveTo(xLineaVertical,yLineaVertical)//posición inicial de la figura
+          yLineaVertical=canvas.height;
+          ctx.lineTo(xLineaVertical,yLineaVertical)/*dibuja una línea desde la ultima posicion del graficador, en este caso lo que puso en moveTo, hasta la posicion que
           recibe como parámetro, colocar cualquier valor*/
           ctx.stroke()//dibuja la línea
         }
