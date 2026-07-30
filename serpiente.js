@@ -7,7 +7,7 @@
 
     const serpiente = 
     [
-      //Ejercicio1
+      /*//Ejercicio1
       {x:0,y:0},
       {x:1,y:0},
       {x:2,y:0},
@@ -16,7 +16,7 @@
       {x:11,y:12},
       {x:12,y:12},
       {x:12,y:13},
-      //Ejercicio3
+      //Ejercicio3*/
       {x:0,y:10},
       {x:0,y:11},
       {x:0,y:12},
@@ -106,7 +106,7 @@ function pintarSerpiente()
       } 
       else 
       {
-        ctx.fillStyle="yellow"
+        ctx.fillStyle="blacks"
         pintarParte(arregloRecorrer.x,arregloRecorrer.y);
       }
     
