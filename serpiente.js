@@ -55,6 +55,7 @@
       //Prueba6
       pintarParte(23,0);*/
       pintarSerpiente();
+      moverDerecha();
     }
 
     function dibujarTablero() 
@@ -111,4 +112,18 @@ function pintarSerpiente()
       }
     
   }
+}
+
+//FUNCIONES DE MOVIMIENTO
+function moverDerecha() 
+{
+  //Posicion de la cabeza de la serpiente
+  let posicionActual=
+  {
+    x:serpiente[0].x+1,
+    y:serpiente[0].y
+  } 
+  //Cuadro nuevo hacia la derecha
+  serpiente.unshift(posicionActual);
+  pintarSerpiente();
 }
