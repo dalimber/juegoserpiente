@@ -23,6 +23,18 @@
       limpiarCanvas();
       /*dibujar cuadricula*/
       dibujarTablero();
+      /*Prueba1*/
+      pintarParte(5,5);
+      /*Prueba2*/
+      pintarParte(10,2);
+      /*Prueba3*/
+      pintarParte(1,23);
+      /*Prueba4*/
+      pintarParte(23,5);
+      /*Prueba5*/
+      pintarParte(0,5);
+      /*Prueba6*/
+      pintarParte(23,0);
     }
 
     function dibujarTablero() 
@@ -55,5 +67,12 @@
         }
     }
 
+function pintarParte(lineaX,lineaY) 
+{
+  let posicionX=lineaX*TAMANIO_CELDA;
+  let posicionY=lineaY*TAMANIO_CELDA;
+
+  ctx.fillRect(posicionX,posicionY,TAMANIO_CELDA,TAMANIO_CELDA);
+}
 
 
