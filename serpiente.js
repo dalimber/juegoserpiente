@@ -14,6 +14,7 @@
     const maximoX = canvas.width / TAMANIO_CELDA;
     const maximoY = canvas.height / TAMANIO_CELDA;
     let juegoTerminado=false;
+    let velocidad=1000;
 
     const serpiente = 
     [
@@ -192,7 +193,7 @@ function moverAbajo()
 function iniciarJuego() 
 {
   pintarComida();
-  intervaloSerpiente=setInterval(moverSerpiente,1000);
+  intervaloSerpiente=setInterval(moverSerpiente,velocidad);
   document.getElementById("estado").innerText = "Partida en curso";
 }
 
@@ -224,6 +225,9 @@ function moverSerpiente()
           serpiente.push({x: cola.x,y: cola.y});
           puntaje+=1;
           document.getElementById("puntaje").innerText = ""+puntaje;
+            velocidad -= 200;
+            clearInterval(intervaloSerpiente);
+            intervaloSerpiente = setInterval(moverSerpiente, velocidad);
         }
         dibujarTodo();
     }
@@ -292,4 +296,27 @@ function GameOver()
           }
     }
     return juegoTerminado;
+}
+
+function reiniciarJuego() 
+{
+  pausarJuego();
+  velocidad=1000;
+  puntaje=0;
+  juegoTerminado = false;
+  serpiente.length = 0;
+  serpiente.push
+  (
+    {x:0,y:10},
+    {x:0,y:11},
+    {x:0,y:12},
+    {x:0,y:13},
+    {x:0,y:14},
+  );
+    direccionActual = "derecha";
+    document.getElementById("puntaje").textContent = "0";
+    document.getElementById("estado").textContent = "Listo";
+    document.getElementById("mensaje").textContent = "Presiona Iniciar para comenzar.";
+    dibujarTodo();
+
 }
