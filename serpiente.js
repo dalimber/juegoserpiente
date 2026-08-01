@@ -59,6 +59,7 @@
       pintarParte(23,0);*/
       pintarSerpiente();
       //moverDerecha();
+      pintarComida();
     }
 
     function dibujarTablero() 
@@ -110,14 +111,16 @@ function pintarSerpiente()
       } 
       else 
       {
-        ctx.fillStyle="blacks"
+        ctx.fillStyle="black"
         pintarParte(arregloRecorrer.x,arregloRecorrer.y);
       }
     
   }
 }
 
+// =========================
 //FUNCIONES DE MOVIMIENTO
+// =========================
 function cambiarDireccion(direccion) 
 {
     direccionActual=direccion;
@@ -201,4 +204,18 @@ function moverSerpiente()
       { moverDerecha()};
 
     dibujarTodo();
+}
+
+// =========================
+//FUNCIONES DE COMIDA
+// =========================
+//let comida={x:0,y:0};
+function pintarComida()
+{
+let comidaX=Math.floor(Math.random()*(canvas.width/TAMANIO_CELDA));
+let comidaY=Math.floor(Math.random()*(canvas.height/TAMANIO_CELDA));
+//comida.x=comidaX;
+//comida.y=comidaY;
+ctx.fillStyle="black";
+pintarParte(comidaX,comidaY);
 }
