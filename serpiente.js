@@ -115,15 +115,61 @@ function pintarSerpiente()
 }
 
 //FUNCIONES DE MOVIMIENTO
+function cambiarDireccion() 
+{
+  moverDerecha();
+  pintarSerpiente();
+
+}
+
 function moverDerecha() 
 {
   //Posicion de la cabeza de la serpiente
-  let posicionActual=
+  let nuevaCabeza=
   {
     x:serpiente[0].x+1,
     y:serpiente[0].y
   } 
   //Cuadro nuevo hacia la derecha
-  serpiente.unshift(posicionActual);
-  pintarSerpiente();
+  serpiente.unshift(nuevaCabeza);
+  serpiente.pop();
+}
+
+function moverIzquierda() 
+{
+  //Posicion de la cabeza de la serpiente
+  let nuevaCabeza=
+  {
+    x:serpiente[0].x-1,
+    y:serpiente[0].y
+  } 
+  //Cuadro nuevo hacia la derecha
+  serpiente.unshift(nuevaCabeza);
+  serpiente.pop();
+}
+
+function moverArriba() 
+{
+  //Posicion de la cabeza de la serpiente
+  let nuevaCabeza=
+  {
+    x:serpiente[0].x,
+    y:serpiente[0].y-1
+  } 
+  //Cuadro nuevo hacia la derecha
+  serpiente.unshift(nuevaCabeza);
+  serpiente.pop();
+}
+
+function moverAbajo() 
+{
+  //Posicion de la cabeza de la serpiente
+  let nuevaCabeza=
+  {
+    x:serpiente[0].x,
+    y:serpiente[0].y+1
+  } 
+  //Cuadro nuevo hacia la derecha
+  serpiente.unshift(nuevaCabeza);
+  serpiente.pop();
 }
