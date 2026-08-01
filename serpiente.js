@@ -189,12 +189,14 @@ function iniciarJuego()
 {
   pintarComida();
   intervaloSerpiente=setInterval(moverSerpiente,1000);
+  document.getElementById("estado").innerText = "Partida en curso";
 }
 
 function pausarJuego() 
 {
   console.log("JUEGO PAUSADO")
   clearInterval(intervaloSerpiente);
+  document.getElementById("estado").innerText = "Pausa";
 }
 
 function moverSerpiente() 
