@@ -195,6 +195,7 @@ function iniciarJuego()
   pintarComida();
   intervaloSerpiente=setInterval(moverSerpiente,velocidad);
   document.getElementById("estado").innerText = "Partida en curso";
+  document.getElementById("mensaje").textContent = "Da tu mejor esfuerzo";
 }
 
 function pausarJuego() 
