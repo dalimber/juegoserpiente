@@ -3,6 +3,9 @@
     const canvas = document.getElementById("canvasJuego");
     const ctx = canvas.getContext("2d");
 
+    let puntaje=0;
+    let comidaAtrapada=false;
+
     let intervaloSerpiente=null;
     let direccionActual="derecha";
 
@@ -27,6 +30,7 @@
       {x:0,y:14},
     ];
     
+    let comida={x:3,y:10};
 
     // Primera pintura del juego al cargar la página
       dibujarTodo();
@@ -183,6 +187,7 @@ function moverAbajo()
 //MOVIMIENTO AUTOMATICO
 function iniciarJuego() 
 {
+  pintarComida();
   intervaloSerpiente=setInterval(moverSerpiente,1000);
 }
 
@@ -195,13 +200,23 @@ function pausarJuego()
 function moverSerpiente() 
 {
   if (direccionActual == "arriba") 
-      { moverArriba()};
-    if (direccionActual == "abajo") 
-      { moverAbajo()};
-    if (direccionActual == "izquierda") 
-      { moverIzquierda()};
-    if (direccionActual == "derecha") 
-      { moverDerecha()};
+    { moverArriba()};
+  if (direccionActual == "abajo") 
+    { moverAbajo()};
+  if (direccionActual == "izquierda") 
+    { moverIzquierda()};
+  if (direccionActual == "derecha") 
+    { moverDerecha()};
+  
+  comidaAtrapada=atrapaComida();
+  if (comidaAtrapada==true) 
+    {
+      let cola = serpiente[serpiente.length - 1];
+      serpiente.push({x: cola.x,y: cola.y});
+      puntaje+=1;
+      document.getElementById("puntaje").innerText = ""+puntaje;
+    }
+
 
     dibujarTodo();
 }
@@ -209,13 +224,27 @@ function moverSerpiente()
 // =========================
 //FUNCIONES DE COMIDA
 // =========================
-//let comida={x:0,y:0};
+
 function pintarComida()
 {
-let comidaX=Math.floor(Math.random()*(canvas.width/TAMANIO_CELDA));
-let comidaY=Math.floor(Math.random()*(canvas.height/TAMANIO_CELDA));
-//comida.x=comidaX;
-//comida.y=comidaY;
+  let comidaX=comida.x;
+  let comidaY=comida.y;
+  if(comidaAtrapada==true)
+  {
+    comidaX=Math.floor(Math.random()*(canvas.width/TAMANIO_CELDA));
+    comidaY=Math.floor(Math.random()*(canvas.height/TAMANIO_CELDA));
+    comida.x=comidaX;
+    comida.y=comidaY;
+  }
+
 ctx.fillStyle="black";
 pintarParte(comidaX,comidaY);
+}
+function atrapaComida() 
+{
+  let cabeza = serpiente[0];
+  if (cabeza.x == comida.x && cabeza.y == comida.y) 
+    {return true;}
+  else
+    {return false;}
 }
