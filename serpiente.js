@@ -2,7 +2,7 @@
     // 1. Capturamos el canvas y su contexto de dibujo
     const canvas = document.getElementById("canvasJuego");
     const ctx = canvas.getContext("2d");
-
+    
     let puntaje=0;
     let comidaAtrapada=false;
 
@@ -10,6 +10,10 @@
     let direccionActual="derecha";
 
     const TAMANIO_CELDA=25;
+
+    const maximoX = canvas.width / TAMANIO_CELDA;
+    const maximoY = canvas.height / TAMANIO_CELDA;
+    let juegoTerminado=false;
 
     const serpiente = 
     [
@@ -201,26 +205,29 @@ function pausarJuego()
 
 function moverSerpiente() 
 {
-  if (direccionActual == "arriba") 
-    { moverArriba()};
-  if (direccionActual == "abajo") 
-    { moverAbajo()};
-  if (direccionActual == "izquierda") 
-    { moverIzquierda()};
-  if (direccionActual == "derecha") 
-    { moverDerecha()};
-  
-  comidaAtrapada=atrapaComida();
-  if (comidaAtrapada==true) 
+  juegoTerminado=GameOver();
+  if (juegoTerminado!=true) 
     {
-      let cola = serpiente[serpiente.length - 1];
-      serpiente.push({x: cola.x,y: cola.y});
-      puntaje+=1;
-      document.getElementById("puntaje").innerText = ""+puntaje;
+      if (direccionActual == "arriba") 
+        { moverArriba()};
+      if (direccionActual == "abajo") 
+        { moverAbajo()};
+      if (direccionActual == "izquierda") 
+        { moverIzquierda()};
+      if (direccionActual == "derecha") 
+        { moverDerecha()};
+      
+      comidaAtrapada=atrapaComida();
+      if (comidaAtrapada==true) 
+        {
+          let cola = serpiente[serpiente.length - 1];
+          serpiente.push({x: cola.x,y: cola.y});
+          puntaje+=1;
+          document.getElementById("puntaje").innerText = ""+puntaje;
+        }
+        dibujarTodo();
     }
-
-
-    dibujarTodo();
+    else {return;}
 }
 
 // =========================
@@ -233,8 +240,8 @@ function pintarComida()
   let comidaY=comida.y;
   if(comidaAtrapada==true)
   {
-    comidaX=Math.floor(Math.random()*(canvas.width/TAMANIO_CELDA));
-    comidaY=Math.floor(Math.random()*(canvas.height/TAMANIO_CELDA));
+    comidaX=Math.floor(Math.random()*(maximoX));
+    comidaY=Math.floor(Math.random()*(maximoY));
     comida.x=comidaX;
     comida.y=comidaY;
   }
@@ -249,4 +256,40 @@ function atrapaComida()
     {return true;}
   else
     {return false;}
+}
+
+// =========================
+//FUNCIONES DE TERMINAR JUEGO
+// =========================
+function GameOver() 
+{
+  let cabeza = serpiente[0];
+  if (
+      cabeza.x < 0 ||
+      cabeza.y < 0 ||
+      cabeza.x >= maximoX ||
+      cabeza.y >= maximoY
+    ) 
+    {
+      juegoTerminado = true;
+      pausarJuego();
+      document.getElementById("estado").innerText = "GAME OVER";
+      document.getElementById("mensaje").innerText = "Tu puntaje fue de: "+puntaje;
+    }
+
+    // Verifica si choca con su propio cuerpo
+    for (let index = 1; index < serpiente.length; index++) 
+      {
+      if (
+          cabeza.x == serpiente[index].x &&
+          cabeza.y == serpiente[index].y
+          ) 
+          {
+            juegoTerminado = true;
+            pausarJuego();
+            document.getElementById("estado").innerText = "GAME OVER";
+            document.getElementById("mensaje").innerText = "Tu puntaje fue de: "+puntaje;
+          }
+    }
+    return juegoTerminado;
 }
