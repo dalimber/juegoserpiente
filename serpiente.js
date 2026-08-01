@@ -3,7 +3,8 @@
     const canvas = document.getElementById("canvasJuego");
     const ctx = canvas.getContext("2d");
 
-    let intervaloSerpiente;
+    let intervaloSerpiente=null;
+    let direccionActual="derecha";
 
     const TAMANIO_CELDA=25;
 
@@ -57,7 +58,7 @@
       //Prueba6
       pintarParte(23,0);*/
       pintarSerpiente();
-      moverDerecha();
+      //moverDerecha();
     }
 
     function dibujarTablero() 
@@ -119,15 +120,8 @@ function pintarSerpiente()
 //FUNCIONES DE MOVIMIENTO
 function cambiarDireccion(direccion) 
 {
-    if (direccion == "arriba") 
-      { moverArriba()};
-    if (direccion == "abajo") 
-      { moverAbajo()};
-    if (direccion == "izquierda") 
-      { moverIzquierda()};
-    if (direccion == "derecha") 
-      { moverDerecha()};
-    pintarSerpiente();
+    direccionActual=direccion;
+    moverSerpiente(direccionActual);
 
 }
 
@@ -197,5 +191,14 @@ function pausarJuego()
 
 function moverSerpiente() 
 {
-  console.log("MOVIENDO")
+  if (direccionActual == "arriba") 
+      { moverArriba()};
+    if (direccionActual == "abajo") 
+      { moverAbajo()};
+    if (direccionActual == "izquierda") 
+      { moverIzquierda()};
+    if (direccionActual == "derecha") 
+      { moverDerecha()};
+
+    dibujarTodo();
 }
