@@ -115,10 +115,17 @@ function pintarSerpiente()
 }
 
 //FUNCIONES DE MOVIMIENTO
-function cambiarDireccion() 
+function cambiarDireccion(direccion) 
 {
-  moverDerecha();
-  pintarSerpiente();
+    if (direccion == "arriba") 
+      { moverArriba()};
+    if (direccion == "abajo") 
+      { moverAbajo()};
+    if (direccion == "izquierda") 
+      { moverIzquierda()};
+    if (direccion == "derecha") 
+      { moverDerecha()};
+    pintarSerpiente();
 
 }
 
